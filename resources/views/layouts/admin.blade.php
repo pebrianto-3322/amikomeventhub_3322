@@ -15,6 +15,12 @@
             <a href="/admin/events" class="flex items-center gap-3 px-4 py-3 hover:bg-indigo-800 rounded-xl font-bold transition">
                 Kelola Event
             </a>
+            <a href="/admin/categories" class="flex items-center gap-3 px-4 py-3 hover:bg-indigo-800 rounded-xl font-bold transition">
+                Kelola Kategori
+            </a>
+            <a href="/admin/partners" class="flex items-center gap-3 px-4 py-3 hover:bg-indigo-800 rounded-xl font-bold transition">
+                Kelola Partner
+            </a>
         </nav>
     </aside>
     <main class="flex-1 p-10 overflow-y-auto">
