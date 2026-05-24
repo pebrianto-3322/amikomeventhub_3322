@@ -1,25 +1,94 @@
 <?php
-
 namespace Database\Seeders;
-
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Akun Admin
+        \App\Models\User::firstOrCreate(
+            ['email' => 'admin@amikom.ac.id'],
+            [
+                'name'     => 'Admin Amikom',
+                'password' => bcrypt('password'),
+                'role'     => 'admin',
+            ]
+        );
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // === 3 KATEGORI ===
+        $cat1 = \App\Models\Category::firstOrCreate(
+            ['slug' => 'seminar-it'],
+            ['name' => 'Seminar IT']
+        );
+        $cat2 = \App\Models\Category::firstOrCreate(
+            ['slug' => 'entertainment'],
+            ['name' => 'Entertainment']
+        );
+        $cat3 = \App\Models\Category::firstOrCreate(
+            ['slug' => 'workshop'],
+            ['name' => 'Workshop']
+        );
+
+        // === 6 EVENT ===
+        \App\Models\Event::firstOrCreate(['title' => 'Jazz Night 2026'], [
+            'category_id' => $cat2->id,
+            'description' => 'Nikmati malam indah dengan alunan musik jazz.',
+            'date'        => '2026-06-10 19:00:00',
+            'location'    => 'Amikom Baru',
+            'price'       => 50000,
+            'stock'       => 100,
+            'poster_path' => 'posters/event-1.png',
+        ]);
+
+        \App\Models\Event::firstOrCreate(['title' => 'Hackathon — Unleash Your Dev'], [
+            'category_id' => $cat1->id,
+            'description' => 'Asah skill coding dan ciptakan solusi inovatif!',
+            'date'        => '2026-06-15 09:00:00',
+            'location'    => 'Inkubator Amikom',
+            'price'       => 50000,
+            'stock'       => 80,
+            'poster_path' => 'posters/event-2.png',
+        ]);
+
+        \App\Models\Event::firstOrCreate(['title' => 'AI & Future Tech Summit 2026'], [
+            'category_id' => $cat1->id,
+            'description' => 'Jelajahi tren AI dan teknologi masa depan bersama para ahli.',
+            'date'        => '2026-07-01 13:00:00',
+            'location'    => 'Cinema Unit 6',
+            'price'       => 75000,
+            'stock'       => 150,
+            'poster_path' => 'posters/event-3.png',
+        ]);
+
+        \App\Models\Event::firstOrCreate(['title' => 'UI/UX Masterclass — Figma Pro'], [
+            'category_id' => $cat3->id,
+            'description' => 'Workshop intensif desain antarmuka modern dengan Figma.',
+            'date'        => '2026-07-05 10:00:00',
+            'location'    => 'Lab Komputer A',
+            'price'       => 100000,
+            'stock'       => 40,
+            'poster_path' => 'posters/event-4.png',
+        ]);
+
+        \App\Models\Event::firstOrCreate(['title' => 'E-Sport U-Champ 2026'], [
+            'category_id' => $cat2->id,
+            'description' => 'Turnamen e-sport antar universitas. Daftar sekarang!',
+            'date'        => '2026-07-20 12:00:00',
+            'location'    => 'Aula Amikom',
+            'price'       => 30000,
+            'stock'       => 200,
+            'poster_path' => 'posters/event-5.png',
+        ]);
+
+        \App\Models\Event::firstOrCreate(['title' => 'Laravel Bootcamp — Build Your First App'], [
+            'category_id' => $cat3->id,
+            'description' => 'Belajar Laravel dari nol hingga deploy aplikasi pertamamu.',
+            'date'        => '2026-08-01 09:00:00',
+            'location'    => 'Ruang Kelas B202',
+            'price'       => 150000,
+            'stock'       => 30,
+            'poster_path' => 'posters/event-6.png',
         ]);
     }
 }
