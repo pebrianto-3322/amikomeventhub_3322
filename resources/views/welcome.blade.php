@@ -47,7 +47,7 @@
             @forelse($events as $event)
 <div class="group bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden">
     <div class="relative overflow-hidden aspect-[3/4]">
-        <img src="{{ $event->poster_path ? Storage::url($event->poster_path) : 'https://placehold.co/400x500/e2e8f0/94a3b8?text=No+Image' }}"
+        <img src="{{ $event->poster_path ? (str_starts_with($event->poster_path, 'http') ? $event->poster_path : asset($event->poster_path)) : 'https://placehold.co/400x500/e2e8f0/94a3b8?text=No+Image' }}"
              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                 <div class="absolute top-4 left-4 px-3 py-1 bg-white/90 backdrop-blur rounded-lg text-xs font-bold uppercase text-indigo-600">
                       {{ $event->category->name ?? '-' }}
