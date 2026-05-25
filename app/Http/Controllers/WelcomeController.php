@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 use App\Models\Partner;
 use App\Models\Category;
-use Illuminate\Http\Request;
+use App\Models\Event;
 
 class WelcomeController extends Controller
 {
@@ -10,6 +10,7 @@ class WelcomeController extends Controller
     {
         $partners = Partner::all();
         $categories = Category::all();
-        return view('welcome', compact('partners', 'categories'));
+        $events = Event::with('category')->latest()->get();
+        return view('welcome', compact('partners', 'categories', 'events'));
     }
 }
