@@ -3,7 +3,7 @@
 @section('page_subtitle', 'Tambahkan partner baru.')
 @section('content')
 <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm max-w-xl">
-    <form action="{{ route('admin.partners.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+    <form action="{{ route('admin.events.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
         @csrf
         <div>
             <label class="block text-sm font-bold text-slate-700 mb-2">Nama Partner</label>
@@ -14,6 +14,11 @@
             <label class="block text-sm font-bold text-slate-700 mb-2">Logo Partner</label>
             <input type="file" name="logo" accept="image/*" class="w-full px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl outline-none font-medium">
             @error('logo') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+        </div>
+        <div>
+            <label class="block text-sm font-bold text-slate-700 mb-2">Poster Event</label>
+           <input type="file" name="poster" accept="image/*" class="w-full px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl outline-none font-medium">
+            @error('poster') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
         <div class="flex justify-end gap-4 pt-4 border-t border-slate-100">
             <a href="{{ route('admin.partners.index') }}" class="px-6 py-4 text-slate-500 font-bold hover:text-slate-800 transition">Batal</a>
