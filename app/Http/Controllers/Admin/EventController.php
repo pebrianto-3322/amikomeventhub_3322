@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -24,16 +23,14 @@ class EventController extends Controller
     {
         $data = $request->validate([
             'category_id' => 'required',
-            'title'       => 'required|string|max:255',
+            'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'date'        => 'required|date',
-            'location'    => 'required|string|max:255',
-            'price'       => 'required|numeric',
-            'stock'       => 'required|numeric',
+            'date' => 'required|date',
+            'location' => 'required|string|max:255',
+            'price' => 'required|numeric',
+            'stock' => 'required|numeric'
         ]);
-
         Event::create($data);
-
         return redirect()->route('admin.events.index')->with('success', 'Event berhasil ditambahkan.');
     }
 
@@ -47,17 +44,15 @@ class EventController extends Controller
     {
         $data = $request->validate([
             'category_id' => 'required',
-            'title'       => 'required|string|max:255',
+            'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'date'        => 'required|date',
-            'location'    => 'required|string|max:255',
-            'price'       => 'required|numeric',
-            'stock'       => 'required|numeric',
+            'date' => 'required|date',
+            'location' => 'required|string|max:255',
+            'price' => 'required|numeric',
+            'stock' => 'required|numeric'
         ]);
-
         $event->update($data);
-
-        return redirect()->route('admin.events.index')->with('success', 'Event berhasil diperbarui.');
+        return redirect()->route('admin.events.index')->with('success', 'Event berhasil diupdate.');
     }
 
     public function destroy(Event $event)
