@@ -9,40 +9,55 @@ class EventController extends Controller
 {
     public function index()
     {
-        $events = Event::with('category')->latest()->get();
+        $events = Event::with('category')->latest()->paginate(10);
         return view('admin.events.index', compact('events'));
     }
 
     public function create()
     {
-        return view('admin.events.create');
+        $categories = \App\Models\Category::all();
+        return view('admin.events.create', compact('categories'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'date' => 'required',
+        $data = $request->validate([
+            'category_id' => 'required',
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'date' => 'required|date',
+            'location' => 'required|string|max:255',
             'price' => 'required|numeric',
+            'stock' => 'required|numeric'
         ]);
-        Event::create($request->all());
-        return redirect()->route('admin.events.index')->with('success', 'Event berhasil ditambahkan!');
+        Event::create($data);
+        return redirect()->route('admin.events.index')->with('success', 'Event berhasil ditambahkan.');
     }
 
     public function edit(Event $event)
     {
-        return view('admin.events.edit', compact('event'));
+        $categories = \App\Models\Category::all();
+        return view('admin.events.edit', compact('event', 'categories'));
     }
 
     public function update(Request $request, Event $event)
     {
-        $event->update($request->all());
-        return redirect()->route('admin.events.index')->with('success', 'Event berhasil diupdate!');
+        $data = $request->validate([
+            'category_id' => 'required',
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'date' => 'required|date',
+            'location' => 'required|string|max:255',
+            'price' => 'required|numeric',
+            'stock' => 'required|numeric'
+        ]);
+        $event->update($data);
+        return redirect()->route('admin.events.index')->with('success', 'Event berhasil diupdate.');
     }
 
     public function destroy(Event $event)
     {
         $event->delete();
-        return redirect()->route('admin.events.index')->with('success', 'Event berhasil dihapus!');
+        return redirect()->route('admin.events.index')->with('success', 'Event berhasil dihapus.');
     }
 }
