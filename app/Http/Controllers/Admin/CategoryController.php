@@ -33,10 +33,10 @@ class CategoryController extends Controller
     }
 
     public function edit(Category $category)
-    {
-        return view('admin.categories.edit', compact('category'));
-    }
-
+{
+    $search = '';
+    return view('admin.categories.edit', compact('category', 'search'));
+}
     public function update(Request $request, Category $category)
     {
         $request->validate(['name' => 'required|string|max:255']);
