@@ -44,14 +44,16 @@
             </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            @php $posters = ['assets/concert.png', 'assets/hackathon.png', 'assets/workshop.png', 'assets/workshop.png', 'assets/concert.png', 'assets/hackathon.png']; @endphp
             @forelse($events as $event)
+            @php $poster = $posters[$loop->index % count($posters)]; @endphp    
             <div class="group bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden">
                 <div class="relative overflow-hidden aspect-[3/4]">
-                    <img src="{{ asset($event->poster_path ?? 'assets/concert.png') }}" alt="{{ $event->title }}"
-                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="absolute top-4 left-4 px-3 py-1 bg-white/90 backdrop-blur rounded-lg text-xs font-bold uppercase text-indigo-600">
-                        {{ $event->category->name ?? '-' }}
-                    </div>
+                  <img src="{{ $event->poster_path ? asset($event->poster_path) : 'https://placehold.co/400x500/e2e8f0/94a3b8?text=No+Image' }}"
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                <div class="absolute top-4 left-4 px-3 py-1 bg-white/90 backdrop-blur rounded-lg text-xs font-bold uppercase text-indigo-600">
+                      {{ $event->category->name ?? '-' }}
+                </div>
                 </div>
                 <div class="p-6">
                     <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-600 transition">{{ $event->title }}</h3>
@@ -63,7 +65,7 @@
                     </div>
                     <div class="flex justify-between items-center pt-4 border-t">
                         <span class="text-2xl font-black text-indigo-600">Rp {{ number_format($event->price, 0, ',', '.') }}</span>
-                        <a href="#" class="px-5 py-2 bg-indigo-50 text-indigo-600 rounded-xl font-bold hover:bg-indigo-600 hover:text-white transition">Lihat Detail</a>
+                        <a href="{{ route('events.show', $event->id) }}" class="px-5 py-2 bg-indigo-50 text-indigo-600 rounded-xl font-bold hover:bg-indigo-600 hover:text-white transition">Lihat Detail</a>
                     </div>
                 </div>
             </div>
@@ -101,6 +103,10 @@
                 <p class="text-slate-400 col-span-4">Belum ada partner.</p>
                 @endforelse
             </div>
+            <!-- Kategori -->
+            <div class="mt-20" id="kategori">
+            <!-- Partner -->
+            <div class="mt-20" id="partner">
         </div>
     </section>
 

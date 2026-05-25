@@ -20,9 +20,9 @@
             <span class="text-xl font-bold tracking-tight">AmikomEventHub</span>
         </div>
         <div class="hidden md:flex gap-8 font-medium">
-            <a href="#" class="text-indigo-600">Jelajahi</a>
-            <a href="#" class="hover:text-indigo-600 transition">Kategori</a>
-            <a href="#" class="hover:text-indigo-600 transition">Tentang Kami</a>
+             <a href="{{ route('home') }}#events" class="text-indigo-600">Jelajahi</a>
+             <a href="{{ route('home') }}#kategori" class="hover:text-indigo-600 transition">Kategori</a>
+             <a href="{{ route('home') }}#partner" class="hover:text-indigo-600 transition">Tentang Kami</a>
         </div>
     </nav>
 
