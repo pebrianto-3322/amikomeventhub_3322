@@ -68,7 +68,7 @@ class DatabaseSeeder extends Seeder
             'location'    => 'Lab Komputer A',
             'price'       => 100000,
             'stock'       => 40,
-            'poster_path' => 'assets/workshop.png',
+            'poster_path' => '',
         ]);
 
         \App\Models\Event::firstOrCreate(['title' => 'E-Sport U-Champ 2026'], [
@@ -78,7 +78,7 @@ class DatabaseSeeder extends Seeder
             'location'    => 'Aula Amikom',
             'price'       => 30000,
             'stock'       => 200,
-            'poster_path' => 'assets/hackathon.png',
+            'poster_path' => '',
         ]);
 
         \App\Models\Event::firstOrCreate(['title' => 'Laravel Bootcamp — Build Your First App'], [
@@ -88,7 +88,7 @@ class DatabaseSeeder extends Seeder
             'location'    => 'Ruang Kelas B202',
             'price'       => 150000,
             'stock'       => 30,
-            'poster_path' => 'assets/workshop.png',
+            'poster_path' => '',
         ]);
 
         // === PARTNER ===
