@@ -18,4 +18,7 @@
 | | Kelola Kategori | [Lihat Kategori](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/admin/categories) |
 | | Kelola Partner | [Lihat Partner](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/admin/partners) |
 | | Laporan Transaksi | [Lihat Transaksi](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/admin/transactions) |
-| **UTS** | Branch Ujian | [Lihat Branch UTS](https://github.com/pebrianto-3322/amikomeventhub_3322/tree/ujian-tengah-semester-3322) |
+| **UTS** | Kelola Kategori | [Lihat Kategori](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/admin/categories) |
+| | Kelola Partner | [Lihat Partner](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/admin/partners) |
+| | Branch Ujian | [Lihat Branch UTS](https://github.com/pebrianto-3322/amikomeventhub_3322/tree/ujian-tengah-semester-3322) |
+| | Video Demo UTS | [Lihat Video](https://drive.google.com/drive/folders/1ap0JD1uLKNsFoc6EJFNpL1RgqrXS2Da9?usp=drive_link) |
