@@ -93,7 +93,7 @@ class DatabaseSeeder extends Seeder
 
         // === PARTNER ===
         $partners = [
-            ['name' => 'Google', 'logo_url' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png'],
+            ['name' => 'Google', 'logo_url' => 'https://play-lh.googleusercontent.com/1-hPxafOxdYpYZEOKzNIkSP43HXCNftVJVttoo4ucl7rsMASXW3Xr6GlXURCubE1tA=w3840-h2160-rw'],
             ['name' => 'About You-1975', 'logo_url' => 'https://i.scdn.co/image/ab67616d0000b2731f44db452a68e229650a302c'], 
         ];
 
