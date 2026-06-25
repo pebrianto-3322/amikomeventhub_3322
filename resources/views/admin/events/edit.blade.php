@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm max-w-3xl">
-    <form action="{{ route('admin.events.update', $event->id) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+    <form action="{{ route('admin.events.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
         @csrf
         @method('PUT')
         <div>
