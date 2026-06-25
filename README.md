@@ -1,12 +1,3 @@
-# 👤 Identitas Mahasiswa
-
-- **Nama:** Paulus Pebrianto Kopong
-- **NIM:** 24.12.3322
-- **Prodi:** Sistem Informasi
-- **Repository:** amikomeventhub_3322
-
----
-
 # 🚀 AmikomEventHub
 
 Aplikasi Management dan Pemesanan Tiket Event Kampus berbasis Framework Laravel. Proyek ini dibangun sebagai bagian dari pemenuhan tugas praktikum dan Ujian Tengah Semester (UTS).

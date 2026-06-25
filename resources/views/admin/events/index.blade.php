@@ -15,6 +15,7 @@
         <thead class="bg-slate-50 text-slate-400 uppercase text-xs font-black tracking-widest">
             <tr>
                 <th class="px-6 py-4">No</th>
+                <th class="px-6 py-4">Poster</th>
                 <th class="px-6 py-4">Event</th>
                 <th class="px-6 py-4">Kategori</th>
                 <th class="px-6 py-4">Harga</th>
@@ -26,7 +27,16 @@
             @forelse($events as $index => $event)
             <tr class="hover:bg-slate-50 transition">
                 <td class="px-6 py-4">{{ $events->firstItem() + $index }}</td>
-                <td class="px-6 py-4 font-bold">{{ $event->title }}</td>
+                
+                <td class="px-6 py-4">
+                    @if($event->poster_path)
+                        <img src="{{ asset($event->poster_path) }}" alt="Poster" class="w-12 h-16 object-cover rounded-xl shadow-sm bg-slate-100">
+                    @else
+                        <div class="w-12 h-16 bg-slate-100 rounded-xl flex items-center justify-center text-[10px] text-slate-400 font-bold">No Img</div>
+                    @endif
+                </td>
+
+                <td class="px-6 py-4 font-bold text-slate-800">{{ $event->title }}</td>
                 <td class="px-6 py-4 text-slate-500">{{ $event->category->name ?? '-' }}</td>
                 <td class="px-6 py-4 text-indigo-600 font-bold">Rp {{ number_format($event->price, 0, ',', '.') }}</td>
                 <td class="px-6 py-4">{{ $event->stock }}</td>
@@ -43,7 +53,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="6" class="px-6 py-10 text-center text-slate-400">Belum ada event.</td>
+                <td colspan="7" class="px-6 py-10 text-center text-slate-400">Belum ada event.</td>
             </tr>
             @endforelse
         </tbody>
