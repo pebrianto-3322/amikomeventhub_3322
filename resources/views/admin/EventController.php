@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage; 
 
 class EventController extends Controller
 {
@@ -24,10 +23,9 @@ class EventController extends Controller
         return view('admin.events.create', compact('categories'));
     }
 
-    // 3. MEMPROSES SIMPAN EVENT BARU + UPLOAD POSTER
+    // 3. MEMPROSES SIMPAN EVENT BARU + BYPASS UPLOAD TO PUBLIC
     public function store(Request $request)
     {
-        // Jalankan Aturan Validasi Input Form
         $validated = $request->validate([
             'title'       => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
@@ -36,18 +34,18 @@ class EventController extends Controller
             'location'    => 'required|string',
             'price'       => 'required|numeric|min:0',
             'stock'       => 'required|integer|min:1',
-            'poster'      => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048', // Maksimal file 2MB
+            'poster'      => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
 
-        // Cek apakah user mengunggah berkas poster
         if ($request->hasFile('poster')) {
-            // Simpan gambar ke folder privat: storage/app/public/posters
-            $path = $request->file('poster')->store('posters', 'public');
-            // Simpan jalur path-nya ke kolom 'poster_path' di database
-            $validated['poster_path'] = $path;
+            $file = $request->file('poster');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            
+            // Pindahkan langsung ke folder public/posters tanpa lewat storage link
+            $file->move(public_path('posters'), $filename);
+            $validated['poster_path'] = 'posters/' . $filename;
         }
 
-        // Create data ke database
         Event::create($validated);
 
         return redirect()->route('admin.events.index')->with('success', 'Event baru berhasil ditambahkan!');
@@ -60,10 +58,9 @@ class EventController extends Controller
         return view('admin.events.edit', compact('event', 'categories'));
     }
 
-    // 5. MEMPROSES UPDATE EVENT + GANTI POSTER LAMA
+    // 5. MEMPROSES UPDATE EVENT
     public function update(Request $request, Event $event)
     {
-        // Jalankan Aturan Validasi Input Form Edit
         $validated = $request->validate([
             'title'       => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
@@ -75,30 +72,29 @@ class EventController extends Controller
             'poster'      => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
 
-        // Cek jika user mengunggah berkas poster baru
         if ($request->hasFile('poster')) {
-            // Hapus file poster lama dari folder storage agar tidak memakan ruang memori
-            if ($event->poster_path && Storage::disk('public')->exists($event->poster_path)) {
-                Storage::disk('public')->delete($event->poster_path);
+            $file = $request->file('poster');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            
+            // Hapus file lama jika ada di folder public
+            if ($event->poster_path && file_exists(public_path($event->poster_path))) {
+                @unlink(public_path($event->poster_path));
             }
 
-            // Simpan file poster baru ke storage
-            $path = $request->file('poster')->store('posters', 'public');
-            $validated['poster_path'] = $path;
+            $file->move(public_path('posters'), $filename);
+            $validated['poster_path'] = 'posters/' . $filename;
         }
 
-        // Perbarui data di database
         $event->update($validated);
 
         return redirect()->route('admin.events.index')->with('success', 'Data event berhasil diperbarui!');
     }
 
-    // 6. MEMPROSES HAPUS EVENT + HAPUS POSTERNYA
+    // 6. MEMPROSES HAPUS EVENT
     public function destroy(Event $event)
     {
-        // Hapus file berkas gambarnya dari storage sebelum datanya dihapus dari database
-        if ($event->poster_path && Storage::disk('public')->exists($event->poster_path)) {
-            Storage::disk('public')->delete($event->poster_path);
+        if ($event->poster_path && file_exists(public_path($event->poster_path))) {
+            @unlink(public_path($event->poster_path));
         }
 
         $event->delete();
