@@ -28,11 +28,11 @@ Berikut adalah rekam jejak pengerjaan fitur aplikasi disesuaikan dengan modul pe
 | **Pertemuan 2** | Laravel Architecture & Routing | [🌐 Halaman Utama Website](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/) |  Selesai |
 | **Pertemuan 3** | Controller & Blade Engine | [Struktur Layout & Blade](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/) |  Selesai |
 | **Pertemuan 4** | Database: Migration & Seeding | `php artisan db:seed` |  Selesai |
-| **Pertemuan 5** | Eloquent ORM & CRUD Basic | [👥 Kelola Data Partners](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/admin/partners) |  Selesai |
+| **Pertemuan 5** | Eloquent ORM & CRUD Basic | [🌐 Web Dashboard](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/) |  Selesai |
 | **Pertemuan 6** | Relationship Eloquent & Filter Data | [🔗 Filter & Relasi Data](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/) |  Selesai |
 | **Pertemuan 7** | **Kuis / Responsi (Ujian Tengah Semester - UTS)** | [💻 Project Baseline UTS](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/) |  Selesai |
 | **Pertemuan 8** | Authentication & Middleware | [🔐 Halaman Login Aplikasi](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/login) |  Selesai |
-| **Pertemuan 9** | Validation & File Upload | [📅 Kelola Data Events (Poster)](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/admin/events) |  Selesai |
+| **Pertemuan 9** | Validation & File Upload | [🌐 Halaman Utama Website](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/) |  Selesai |
 
 ---
 
