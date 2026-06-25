@@ -20,19 +20,19 @@ Aplikasi Management dan Pemesanan Tiket Event Kampus berbasis Framework Laravel.
 
 ## 📌 Daftar Materi & Progress Project (Pertemuan 1 - 9)
 
-Berikut adalah rekam jejak pengerjaan fitur aplikasi disesuaikan dengan materi perkuliahan dari awal hingga Pertemuan 9. Klik pada link biru di kolom **Jalur URL / Fitur** untuk menguji fitur secara langsung:
+Berikut adalah rekam jejak pengerjaan fitur aplikasi disesuaikan dengan modul perkuliahan dari awal hingga Pertemuan 9. Klik pada link biru di kolom **Jalur URL / Fitur** untuk menguji fitur secara langsung:
 
-| Pertemuan | Materi & Milestone Project | Jalur URL / Fitur (Klik Link) | Status |
+| Pertemuan | Materi & Milestone Project (Sesuai Modul) | Jalur URL / Fitur (Klik Link) | Status |
 | :--- | :--- | :--- | :---: |
-| **Pertemuan 1** | Pengenalan Laravel, Arsitektur MVC, dan Instalasi Environment | [Persiapan Environment](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/) |  Selesai |
-| **Pertemuan 2** | Konsep Routing, Pembuatan Views, dan Blade Templating Base | [🌐 Halaman Utama Website](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/) |  Selesai |
-| **Pertemuan 3** | Database Setup, Database Migrations, dan Pembuatan Struktur Tabel | [Struktur Schema DB](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/) |  Selesai |
-| **Pertemuan 4** | Implementasi Database Seeding & Model Eloquent (Kategori & Partner) | `php artisan db:seed` |  Selesai |
-| **Pertemuan 5** | Pembuatan Fitur Authentication (Sistem Login & Register User/Admin) | [🔐 Halaman Login Aplikasi](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/login) |  Selesai |
-| **Pertemuan 6** | Implementasi CRUD Dasar (Manajemen Data Kategori & Mitra/Partners) | [👥 Kelola Data Partners](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/admin/partners) |  Selesai |
-| **Pertemuan 7** | Implementasi CRUD Lanjutan (Manajemen Event & Sistem Upload Poster) | [📅 Kelola Data Events (Poster)](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/admin/events) |  Selesai |
-| **Pertemuan 8** | **Ujian Tengah Semester (UTS)** - Debugging Path & Pengondisian Database | [💻 Dashboard Management](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/admin/events) |  Selesai |
-| **Pertemuan 9** | Pengembangan Halaman Detail Event & Sistem Perhitungan Checkout Dinamis | [🛒 Fitur Dynamic Checkout](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/) |  Selesai |
+| **Pertemuan 1** | Modern Workflow: Git & GitHub | [Persiapan Environment](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/) |  Selesai |
+| **Pertemuan 2** | Laravel Architecture & Routing | [🌐 Halaman Utama Website](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/) |  Selesai |
+| **Pertemuan 3** | Controller & Blade Engine | [Struktur Layout & Blade](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/) |  Selesai |
+| **Pertemuan 4** | Database: Migration & Seeding | `php artisan db:seed` |  Selesai |
+| **Pertemuan 5** | Eloquent ORM & CRUD Basic | [👥 Kelola Data Partners](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/admin/partners) |  Selesai |
+| **Pertemuan 6** | Relationship Eloquent & Filter Data | [🔗 Filter & Relasi Data](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/) |  Selesai |
+| **Pertemuan 7** | **Kuis / Responsi (Ujian Tengah Semester - UTS)** | [💻 Project Baseline UTS](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/) |  Selesai |
+| **Pertemuan 8** | Authentication & Middleware | [🔐 Halaman Login Aplikasi](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/login) |  Selesai |
+| **Pertemuan 9** | Validation & File Upload | [📅 Kelola Data Events (Poster)](https://amikomeventhub-3322-main-ukwhf2.laravel.cloud/admin/events) |  Selesai |
 
 ---
 
