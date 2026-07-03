@@ -1,0 +1,124 @@
+name: 🚀 Deploy to InfinityFree
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # Tombol manual deploy di GitHub
+
+jobs:
+  deploy:
+    name: 📦 Build & Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout kode dari repository
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      # 2. Setup PHP 8.3
+      - name: 🐘 Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, xml, ctype, json, bcmath, curl
+
+      # 3. Cache Composer dependencies
+      - name: 💾 Cache Composer
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('composer.lock') }}
+          restore-keys: composer-
+
+      # 4. Install Composer dependencies (production only)
+      - name: 📦 Install Composer Dependencies
+        run: composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+
+      # 5. Setup Node.js
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # 6. Install NPM dependencies
+      - name: 📦 Install NPM Dependencies
+        run: npm ci
+
+      # 7. Build Vite + Tailwind assets
+      - name: 🔨 Build Vite Assets
+        run: npm run build
+
+      # 8. Siapkan struktur folder sesuai InfinityFree (Flat Structure)
+      - name: 📁 Prepare Deployment Structure
+        run: |
+          mkdir -p deploy
+
+          # ===== Copy Laravel Core & Public Files directly to deploy/ =====
+          cp -r app deploy/app
+          cp -r bootstrap deploy/bootstrap
+          cp -r config deploy/config
+          cp -r database deploy/database
+          cp -r public deploy/public
+          cp -r resources deploy/resources
+          cp -r routes deploy/routes
+          cp -r vendor deploy/vendor
+          [ -d api ] && cp -r api deploy/api || true
+
+          # Root Files
+          cp artisan deploy/artisan
+          cp composer.json deploy/composer.json
+          cp composer.lock deploy/composer.lock
+          [ -f .htaccess ] && cp .htaccess deploy/.htaccess || true
+          [ -f .editorconfig ] && cp .editorconfig deploy/.editorconfig || true
+          [ -f .gitattributes ] && cp .gitattributes deploy/.gitattributes || true
+
+          # ===== Storage structure (buat folder kosong) =====
+          mkdir -p deploy/storage/app/public
+          mkdir -p deploy/storage/framework/cache/data
+          mkdir -p deploy/storage/framework/sessions
+          mkdir -p deploy/storage/framework/views
+          mkdir -p deploy/storage/logs
+
+          # Buat .gitkeep agar folder tidak kosong saat FTP
+          touch deploy/storage/app/public/.gitkeep
+          touch deploy/storage/framework/cache/data/.gitkeep
+          touch deploy/storage/framework/sessions/.gitkeep
+          touch deploy/storage/framework/views/.gitkeep
+          touch deploy/storage/logs/.gitkeep
+
+          # ===== 🧹 Clean vendor folder (Optimize size & inodes for InfinityFree) =====
+          echo "🧹 Cleaning non-essential vendor files to save inodes..."
+          find deploy/vendor -type d -name "tests" -exec rm -rf {} +
+          find deploy/vendor -type d -name "test" -exec rm -rf {} +
+          find deploy/vendor -type d -name "docs" -exec rm -rf {} +
+          find deploy/vendor -type d -name "spec" -exec rm -rf {} +
+          find deploy/vendor -type d -name ".github" -exec rm -rf {} +
+          find deploy/vendor -type f -name "*.md" -delete
+          find deploy/vendor -type f -name "*.txt" -delete
+          find deploy/vendor -type f -name "LICENSE" -delete
+          find deploy/vendor -type f -name "LICENSE.txt" -delete
+          find deploy/vendor -type f -name "CHANGELOG" -delete
+
+          echo "✅ Deployment structure ready!"
+          echo "📊 Total size:"
+          du -sh deploy/
+
+      # 9. Deploy ke InfinityFree via FTP
+      - name: 🚀 Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./deploy/
+          server-dir: /htdocs/
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            .env
+            public/posters/**
+            uploads/**
+            storage
