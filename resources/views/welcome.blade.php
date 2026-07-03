@@ -2,7 +2,6 @@
 @use('Illuminate\Support\Facades\Storage')
 @section('content')
 
-    <!-- Hero Section -->
     <section class="max-w-7xl mx-auto px-6 py-20 flex flex-col md:flex-row items-center gap-12">
         <div class="flex-1 space-y-8">
             <span class="inline-block px-4 py-1.5 bg-indigo-100 text-indigo-700 rounded-full text-sm font-bold uppercase tracking-wider">#1 Event Platform</span>
@@ -35,7 +34,6 @@
         </div>
     </section>
 
-    <!-- Events Grid -->
     <section id="events" class="max-w-7xl mx-auto px-6 py-20">
         <div class="flex justify-between items-end mb-12">
             <div>
@@ -45,13 +43,13 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @forelse($events as $event)
-<div class="group bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden">
-    <div class="relative overflow-hidden aspect-[3/4]">
-        <img src="{{ $event->poster_path ? (str_starts_with($event->poster_path, 'http') ? $event->poster_path : asset($event->poster_path)) : 'https://placehold.co/400x500/e2e8f0/94a3b8?text=No+Image' }}"
-             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                <div class="absolute top-4 left-4 px-3 py-1 bg-white/90 backdrop-blur rounded-lg text-xs font-bold uppercase text-indigo-600">
-                      {{ $event->category->name ?? '-' }}
-                </div>
+            <div class="group bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden">
+                <div class="relative overflow-hidden aspect-[3/4]">
+                    <img src="{{ $event->poster_path ? (str_starts_with($event->poster_path, 'http') ? $event->poster_path : asset($event->poster_path)) : 'https://placehold.co/400x500/e2e8f0/94a3b8?text=No+Image' }}"
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute top-4 left-4 px-3 py-1 bg-white/90 backdrop-blur rounded-lg text-xs font-bold uppercase text-indigo-600">
+                          {{ $event->category->name ?? '-' }}
+                    </div>
                 </div>
                 <div class="p-6">
                     <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-600 transition">{{ $event->title }}</h3>
@@ -72,22 +70,23 @@
             @endforelse
         </div>
 
-        <!-- Kategori -->
         <div class="mt-20">
             <h2 class="text-3xl font-extrabold mb-2">Kategori Event</h2>
             <p class="text-slate-500 font-medium mb-8">Temukan event sesuai minatmu!</p>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <a href="{{ url('/') }}#events" class="block bg-white border border-slate-100 rounded-2xl p-6 text-center shadow-sm hover:shadow-md hover:border-indigo-600 transition">
+                    <p class="font-bold text-indigo-600">Semua Event</p>
+                </a>
                 @forelse($categories as $category)
-                <div class="bg-white border border-slate-100 rounded-2xl p-6 text-center shadow-sm hover:shadow-md hover:border-indigo-200 transition">
+                <a href="{{ url('/?category=' . $category->id) }}#events" class="block bg-white border border-slate-100 rounded-2xl p-6 text-center shadow-sm hover:shadow-md hover:border-indigo-600 transition">
                     <p class="font-bold text-slate-800">{{ $category->name }}</p>
-                </div>
+                </a>
                 @empty
                 <p class="text-slate-400 col-span-4">Belum ada kategori.</p>
                 @endforelse
             </div>
         </div>
 
-        <!-- Partner -->
         <div class="mt-20">
             <h2 class="text-3xl font-extrabold mb-2">Partner Kami</h2>
             <p class="text-slate-500 font-medium mb-8">Didukung oleh partner terpercaya.</p>
@@ -101,10 +100,8 @@
                 <p class="text-slate-400 col-span-4">Belum ada partner.</p>
                 @endforelse
             </div>
-            <!-- Kategori -->
-            <div class="mt-20" id="kategori">
-            <!-- Partner -->
-            <div class="mt-20" id="partner">
+            <div class="mt-20" id="kategori"></div>
+            <div class="mt-20" id="partner"></div>
         </div>
     </section>
 
