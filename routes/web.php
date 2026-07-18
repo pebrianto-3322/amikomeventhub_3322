@@ -31,6 +31,8 @@ Route::get('/login', function () {
     return redirect()->route('admin.login');
 })->name('login');
 
+//lubang route POST agar peladen Midtrans bisa menembak instruksi di atas secara bebas
+Route::post('/midtrans/callback', [\App\Http\Controllers\MidtransWebhookController::class, 'handle']);
 
 // ==================== RUTE ADMIN AREA (GROUPING) ====================
 Route::prefix('admin')->name('admin.')->group(function () {

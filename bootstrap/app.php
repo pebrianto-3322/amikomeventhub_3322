@@ -15,7 +15,12 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'admin' => \App\Http\Middleware\AdminMiddleware::class,
         ]);
+        // Kecualikan route callback Midtrans dari verifikasi CSRF
+        $middleware->validateCsrfTokens(except: [
+            '/midtrans/callback',
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
     })->create();
+    
